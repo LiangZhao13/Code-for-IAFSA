@@ -1,19 +1,19 @@
 function [waypoint_x, waypoint_y, waypoint_yaw] = improveAF_main()
 %%
-% ±¾º¯ÊıÎª¸Ä½øÈË¹¤ÓãÈº·¨Ö÷º¯Êı
-% ÊäÈë£ºÎŞ
-% Êä³ö£ºwaypointµÄx×ø±êÒÔ¼°y×ø±ê
-% ¶ÔÓÚ´«Í³ÈË¹¤ÓãÈºËã·¨£¬ÔÚÕ¤¸ñ»·¾³ÖĞµÄÓÅ»¯.
-% ¸Ä½ø·½·¨ÈçÏÂ£º
-% ×ÔÊÊÓ¦ÊÓÒ°
-% ×ÔÊÊÓ¦²½³¤
-% ÔÚÃÙÊ³ĞĞÎªÖĞ¼ÓÈë·½ÏòÒò×Ó
+% æœ¬å‡½æ•°ä¸ºæ”¹è¿›äººå·¥é±¼ç¾¤æ³•ä¸»å‡½æ•°
+% è¾“å…¥ï¼šæ— 
+% è¾“å‡ºï¼šwaypointçš„xåæ ‡ï¼Œyåæ ‡ï¼Œè‰å‘
+% å¯¹äºä¼ ç»Ÿäººå·¥é±¼ç¾¤ç®—æ³•ï¼Œåœ¨æ …æ ¼ç¯å¢ƒä¸­çš„ä¼˜åŒ–.
+% æ”¹è¿›æ–¹æ³•å¦‚ä¸‹ï¼š
+% è‡ªé€‚åº”è§†é‡å’Œæ­¥é•¿
+% åœ¨è§…é£Ÿè¡Œä¸ºä¸­åŠ å…¥æ–¹å‘å› å­å’Œæ¦‚ç‡ç®—å­
+% åŸºäºå¼—æ´›ä¼Šå¾·ç®—æ³•çš„è·¯å¾„ä¼˜åŒ–
 %%
 close all;
 clear all;
 clc;
 %%
-%»­³ö»úÆ÷ÈËµÄÕÏ°­»·¾³£¬²¢±ê×¢start,goalÎ»ÖÃ
+%ç”»å‡ºæœºå™¨äººçš„éšœç¢ç¯å¢ƒï¼Œå¹¶æ ‡æ³¨start,goalä½ç½®
 tic;
 a = image_process();
 % a = logical(a);
@@ -22,12 +22,12 @@ b = a;
 b(end+1,end+1) = 0;
 figure;
 colormap([0 0 0;1 1 1])
-pcolor(b); % ¸³ÓèÕ¤¸ñÑÕÉ«
-set(gca,'XTick',0:10:n,'YTick',0:10:n);  % ÉèÖÃ×ø±ê
+pcolor(b); % èµ‹äºˆæ …æ ¼é¢œè‰²
+set(gca,'XTick',0:10:n,'YTick',0:10:n);  % è®¾ç½®åæ ‡
 % axis image xy
 
-% text(0.5,0.5,'START','Color','red','FontSize',10);%ÏÔÊ¾start×Ö·û
-% text(n+0.5,n+1.5,'GOAL','Color','red','FontSize',10);%ÏÔÊ¾goal×Ö·û
+% text(0.5,0.5,'START','Color','red','FontSize',10);%æ˜¾ç¤ºstartå­—ç¬¦
+% text(n+0.5,n+1.5,'GOAL','Color','red','FontSize',10);%æ˜¾ç¤ºgoalå­—ç¬¦
 
 % case 1
 % x_start = 92;
@@ -43,54 +43,54 @@ y_goal = 23;
 
 hold on
 
-%»­³öÆğÊ¼µãºÍÄ¿±êµãÎ»ÖÃ
+%ç”»å‡ºèµ·å§‹ç‚¹å’Œç›®æ ‡ç‚¹ä½ç½®
 scatter(x_start+0.5,y_start+0.5,'MarkerEdgeColor',[1 0 0],'MarkerFaceColor',[1 0 0], 'LineWidth',1);%start point
 scatter(x_goal+0.5,y_goal+0.5,'MarkerEdgeColor',[0 1 0],'MarkerFaceColor',[0 1 0], 'LineWidth',1);%goal point
 
 hold on
 
 %%
-%ÕÏ°­¿Õ¼ä¾ØÕó¼¯ºÏB
+%éšœç¢ç©ºé—´çŸ©é˜µé›†åˆB
 Barrier = (find(a==0))';
 %%
-%³õÊ¼»¯
-N = 10;%ÈË¹¤ÓãÊıÁ¿
+%åˆå§‹åŒ–
+N = 10;%äººå·¥é±¼æ•°é‡
 try_number = 8;
-MAXGEN = 500;%×î´óµü´ú´ÎÊı
-visual = 10; %³õÊ¼Öµ
+MAXGEN = 500;%æœ€å¤§è¿­ä»£æ¬¡æ•°
+visual = 10; %åˆå§‹å€¼
 delta = 0.618;
-start = (x_start-1)*n+y_start;%ÈË¹¤ÓãÈº¿ªÊ¼Î»ÖÃ
-DistMin = sqrt((1-n)^2+(n-1)^2);%×î¶Ì¾àÀë±êÖ¾Î»
-goal = (x_goal-1)*100+y_goal;%Ä¿±êÎ»ÖÃ
-shift = 1;%ÃÙÊ³ĞĞÎªºÍ{Èº¾Û£¬×·Î²}ĞĞÎªµÄÄ£Ê½ÇĞ»»£¬
-shiftFreq = 8;%ÃÙÊ³ĞĞÎªºÍ{Èº¾Û£¬×·Î²}ĞĞÎªµÄÇĞ »»ÆµÂÊ
+start = (x_start-1)*n+y_start;%äººå·¥é±¼ç¾¤å¼€å§‹ä½ç½®
+DistMin = sqrt((1-n)^2+(n-1)^2);%æœ€çŸ­è·ç¦»æ ‡å¿—ä½
+goal = (x_goal-1)*100+y_goal;%ç›®æ ‡ä½ç½®
+shift = 1;%è§…é£Ÿè¡Œä¸ºå’Œ{ç¾¤èšï¼Œè¿½å°¾}è¡Œä¸ºçš„æ¨¡å¼åˆ‡æ¢ï¼Œ
+shiftFreq = 8;%è§…é£Ÿè¡Œä¸ºå’Œ{ç¾¤èšï¼Œè¿½å°¾}è¡Œä¸ºçš„åˆ‡ æ¢é¢‘ç‡
 rightInf = sqrt(2);
-arrayValue = [20];%ÆğµãÏÈ·ÅÈëÒªÏÔÊ¾µÄÏòÁ¿ÖĞ.
-%×îÖÕwaypointµÄ×ø±ê
+arrayValue = [20];%èµ·ç‚¹å…ˆæ”¾å…¥è¦æ˜¾ç¤ºçš„å‘é‡ä¸­.
+%æœ€ç»ˆwaypointçš„åæ ‡
 x = [];
 y = [];
 for i =1:1:N
-    ppValue(i) = start;%´«µİÈË¹¤ÓãÈºÎ»ÖÃµÄ±äÁ¿
+    ppValue(i) = start;%ä¼ é€’äººå·¥é±¼ç¾¤ä½ç½®çš„å˜é‡
 end
 H =GrideAF_foodconsistence(n,ppValue,goal);
-count = 1;%¼ÇÂ¼Ö´ĞĞÃÙÊ³ĞĞÎªµÄ´ÎÊı
-runDist = 0;%¼ÇÂ¼ĞĞ×ßÂ·¾¶µÄ×Ü³¤¶È
-runDist_part = 0;%¼ÇÂ¼Ã¿Ò»Ìõ¿ÉĞĞµÄĞĞ×ßÂ·¾¶³¤¶È£¬ÓÃÓÚ±È½Ï
-BestH = zeros(1,MAXGEN);%¼ÇÂ¼Ã¿Ò»´Îµü´úÖĞµÄ×îÓÅHÖµ 
-index = [];%¼ÇÂ¼ÕÒµ½Â·¾¶µÄÓãÈº
-%-----------------------------------------ÖÁ´Ë±äÁ¿²ÎÊı³õÊ¼»¯È«²¿½áÊø------------------------------------------------------
+count = 1;%è®°å½•æ‰§è¡Œè§…é£Ÿè¡Œä¸ºçš„æ¬¡æ•°
+runDist = 0;%è®°å½•è¡Œèµ°è·¯å¾„çš„æ€»é•¿åº¦
+runDist_part = 0;%è®°å½•æ¯ä¸€æ¡å¯è¡Œçš„è¡Œèµ°è·¯å¾„é•¿åº¦ï¼Œç”¨äºæ¯”è¾ƒ
+BestH = zeros(1,MAXGEN);%è®°å½•æ¯ä¸€æ¬¡è¿­ä»£ä¸­çš„æœ€ä¼˜Hå€¼ 
+index = [];%è®°å½•æ‰¾åˆ°è·¯å¾„çš„é±¼ç¾¤
+%-----------------------------------------è‡³æ­¤å˜é‡å‚æ•°åˆå§‹åŒ–å…¨éƒ¨ç»“æŸ------------------------------------------------------
 for j = 1:1:MAXGEN
     switch shift
-%------------------------------------ÃÙÊ³ĞĞÎª----------------------------------------------------------------------------
+%------------------------------------è§…é£Ÿè¡Œä¸º----------------------------------------------------------------------------
         case 1
             for i = 1:1:N
                [nextPosition,nextPositionH] = GridAF_prey(n,ppValue(i),i,try_number,H,Barrier,goal, j, MAXGEN);
-               %ĞèÒª¼ÇÂ¼ÏÂÃ¿ÌõÓã¶ÔÓ¦µÄÎ»ÖÃ£¬ÒÔ¼°Ê³ÎïÅ¨¶È.ÒÔ±ãÏÂ´Î¸üĞÂ.
-               position(j,i) = nextPosition;%position´æ·ÅËùÓĞÓãÈºµÄÎ»ÖÃ.
+               %éœ€è¦è®°å½•ä¸‹æ¯æ¡é±¼å¯¹åº”çš„ä½ç½®ï¼Œä»¥åŠé£Ÿç‰©æµ“åº¦.ä»¥ä¾¿ä¸‹æ¬¡æ›´æ–°.
+               position(j,i) = nextPosition;%positionå­˜æ”¾æ‰€æœ‰é±¼ç¾¤çš„ä½ç½®.
                H(i) = nextPositionH;
             end
             disp('prey!!!!')
-%------------------------------------Èº¾ÛĞĞÎª---------------------------------------------------------------------------    
+%------------------------------------ç¾¤èšè¡Œä¸º---------------------------------------------------------------------------    
          case 2     
             for i = 1:1:N
                 [nextPosition_S,nextPositionH_S] = GridAF_swarm(n,N,position(j-1,:),i,visual,delta,try_number,H,Barrier,goal, j, MAXGEN);
@@ -102,62 +102,62 @@ for j = 1:1:MAXGEN
                     nextPosition = nextPosition_S;
                     nextPositionH = nextPositionH_S;
                 end
-                 position(j,i) = nextPosition;%position´æ·ÅËùÓĞÓãÈºµÄÎ»ÖÃ.
+                 position(j,i) = nextPosition;%positionå­˜æ”¾æ‰€æœ‰é±¼ç¾¤çš„ä½ç½®.
                  H(i) = nextPositionH;
             end
             disp('swarm & follow!!!')
     end
 %-----------------------------------------------------------------------------------------------------------------
-    count = count+1;%ËùÓĞÈË¹¤Óã¶¼Íê³ÉÁËÒ»´ÎÃÙÊ³ĞĞÎª
-    if rem(count,shiftFreq) == 0 %ÒòÎªcount´Ó1¿ªÊ¼¼Ç£¬ËùÒÔ5Ê±£¬ÕıºÃ4´ÎÃÙÊ³ĞĞÎª
+    count = count+1;%æ‰€æœ‰äººå·¥é±¼éƒ½å®Œæˆäº†ä¸€æ¬¡è§…é£Ÿè¡Œä¸º
+    if rem(count,shiftFreq) == 0 %å› ä¸ºcountä»1å¼€å§‹è®°ï¼Œæ‰€ä»¥5æ—¶ï¼Œæ­£å¥½4æ¬¡è§…é£Ÿè¡Œä¸º
         shift = 2;
     else
         shift = 1;
     end
     
-    %Òª¸üĞÂppValueµÄÖµ
+    %è¦æ›´æ–°ppValueçš„å€¼
     ppValue =  position(j,:);
-    %µ±ÔÚpositionÖĞÕÒµ½ÈË¹¤Óãµ½´ïgoal´¦Ê±£¬ÔòÌø³öÑ­»·
+    %å½“åœ¨positionä¸­æ‰¾åˆ°äººå·¥é±¼åˆ°è¾¾goalå¤„æ—¶ï¼Œåˆ™è·³å‡ºå¾ªç¯
     index = find(position(j,:)==goal);
     if ~isempty(index)
         break;
     end
 end
 
-%Èç¹ûÊÇÒòÎª×î´óµü´ú´ÎÊı¶ø½áÊøµÄÑ­»·£¬ÔòËµÃ÷Ã»ÓĞÂ·¾¶µ½´ï
+%å¦‚æœæ˜¯å› ä¸ºæœ€å¤§è¿­ä»£æ¬¡æ•°è€Œç»“æŸçš„å¾ªç¯ï¼Œåˆ™è¯´æ˜æ²¡æœ‰è·¯å¾„åˆ°è¾¾
 if MAXGEN <= j
     disp('There is no way can arrive to the goal!!!');
 else
 
 %%
-%ÔÚËùÓĞ¿ÉĞĞÂ·¾¶ÖĞÕÒ³ö×î¶ÌÂ·¾¶
+%åœ¨æ‰€æœ‰å¯è¡Œè·¯å¾„ä¸­æ‰¾å‡ºæœ€çŸ­è·¯å¾„
     for i = 1:1:length(index)
         arrayValue =[start;position(:,index(i))]';
-%¼ÆËã³öĞĞ×ßÂ·¾¶µÄ×Ü³¤¶È
+%è®¡ç®—å‡ºè¡Œèµ°è·¯å¾„çš„æ€»é•¿åº¦
         for j = 1:1:length(arrayValue)-1
             d = distance(n,arrayValue(j),arrayValue(j+1));
             runDist_part = runDist_part + d;
         end
-        transimit(i) = runDist_part;%¼ÇÂ¼ËùÓĞ¿ÉĞĞÂ·¾¶µÄ×Ü³¤¶È   
+        transimit(i) = runDist_part;%è®°å½•æ‰€æœ‰å¯è¡Œè·¯å¾„çš„æ€»é•¿åº¦   
         runDist_part = 0;
     end
     [runDist,runMin_index] = min(transimit);
     arrayValue = [start;position(:,index(runMin_index))]';
     
     for i =1:1:length(arrayValue)
-        BestH(i) = goal-arrayValue(i);%¼ÇÂ¼×îÓÅ¿ÉĞĞ½âµÄµü´úÍ¼
+        BestH(i) = goal-arrayValue(i);%è®°å½•æœ€ä¼˜å¯è¡Œè§£çš„è¿­ä»£å›¾
     end
     
-    %Â·¾¶ÓÅ»¯
+    %è·¯å¾„ä¼˜åŒ–
     arrayValue = path_smooth(arrayValue);
-    [waypoint_x, waypoint_y] = DrawPath(x, y, n,arrayValue);%»­³öĞĞ×ßÂ·¾¶
+    [waypoint_x, waypoint_y] = DrawPath(x, y, n,arrayValue);%ç”»å‡ºè¡Œèµ°è·¯å¾„
     waypoint_num = length(waypoint_x);
     waypoint_yaw = [0];
     for i = 1:waypoint_num-1
         angle = atan((waypoint_y(i+1)-waypoint_y(i))/(waypoint_x(i+1)-waypoint_x(i)));
         waypoint_yaw = [waypoint_yaw angle];
     end
-%     fprintf('ĞĞ×ß³¤¶ÈÎª: %f\n',runDist)%ÏÔÊ¾ĞĞ×ßÂ·¾¶µÄ³¤¶È
+%     fprintf('è¡Œèµ°é•¿åº¦ä¸º: %f\n',runDist)%æ˜¾ç¤ºè¡Œèµ°è·¯å¾„çš„é•¿åº¦
 end
 toc;
 end
