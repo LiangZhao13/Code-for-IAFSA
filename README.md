@@ -20,6 +20,6 @@ The manuscript of the article is uploaded [here](/article/Manuscript.pdf).
 - [distance](/distance.m): m file. Calculate the distanve between 2 artificial fish.
 
 ## Contact
-Liang Zhao: [liamzhao13@zju.edu.cn](liamzhao13@zju.edu.cn). Master student in the College of Civil Engineering and Architecture, Zhejiang University.
+Liang Zhao: [liamzhao13@zju.edu.cn](liamzhao13@zju.edu.cn). Master student in the College of Civil Engineering and Architecture, Zhejiang University.\
 Yong Bai: [baiyong@zju.edu.cn](baiyong@zju.edu.c). Professor in the College of Civil Engineering and Architecture, Zhejiang University.
 
