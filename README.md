@@ -13,4 +13,7 @@ The manuscript of the article is uploaded [here](/article/Manuscript.pdf).
 ### Additional Function
 - [image_process](/image_process.m): m file. Read and process the environment map. Recognize the RGB color of the obstacles and ocean and convert the map into binary matrix. 
 - [allow_fun](/allow_fun.m): m file. Calculate the allowable area in the neighborhood.
-- [eachAF_dist](/eachAF_dist.m): m file. 
+- [eachAF_dist](/eachAF_dist.m): m file. Calculate the distance between each artificial fish. 
+- [arr2orxy](/arr2orxy.m): m file. Convert array structure into xy coordinates. 
+- [distance](/distance.m): m file. Calculate the distanve between 2 artificial fish.
+
