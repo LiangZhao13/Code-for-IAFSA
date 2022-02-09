@@ -10,7 +10,7 @@ The manuscript of the article is uploaded [here](/article/Manuscript.pdf).
 - [GridAF_follow](/GridAF_follow.m): m file. The artificial fish will follow its neighbor which is with the best food consisitency. See the figure below.
 ![image](https://github.com/LiangZhao13/Improved-Artificial-Fish-Swarm-Algorithm/blob/main/images/behavior%E5%89%AF%E6%9C%AC.jpg)
 - [GridAF_swarm](/GridAF_swarm.m): m file. The artificial fish will take a step in the direction of the swarm center. See the figure below.
-![image](https://github.com/LiangZhao13/Improved-Artificial-Fish-Swarm-Algorithm/blob/main/images/swarmbehavior.png)
+![image](https://github.com/LiangZhao13/Improved-Artificial-Fish-Swarm-Algorithm/blob/main/images/swarmbehavior%E7%9A%84%E5%89%AF%E6%9C%AC.png)
 ### Additional Function
 - [image_process](/image_process.m): m file. Read and process the environment map. Recognize the RGB color of the obstacles and ocean and convert the map into binary matrix. 
 - [allow_fun](/allow_fun.m): m file. Calculate the allowable area in the neighborhood.
