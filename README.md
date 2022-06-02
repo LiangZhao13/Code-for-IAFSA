@@ -17,7 +17,7 @@ The manuscript of the article is uploaded [here](/article/Manuscript.pdf).
 - [allow_fun](/allow_fun.m): m file. Calculate the allowable area in the neighborhood.
 - [eachAF_dist](/eachAF_dist.m): m file. Calculate the distance between each artificial fish. 
 - [arr2orxy](/arr2orxy.m): m file. Convert array structure into xy coordinates. 
-- [distance](/distance.m): m file. Calculate the distanve between 2 artificial fish.
+- [distance](/distance.m): m file. Calculate the distance between 2 artificial fish.
 ## Running Results
 ![image](https://github.com/LiangZhao13/Improved-Artificial-Fish-Swarm-Algorithm/blob/main/images/Satellite_map.png)
 ![image](https://github.com/LiangZhao13/Improved-Artificial-Fish-Swarm-Algorithm/blob/main/images/map_with_route.png)
