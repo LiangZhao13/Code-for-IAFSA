@@ -6,7 +6,7 @@ The mathematical background of IAFSA is detailed descriped in the author's artic
 The manuscript of the article is uploaded [here](/article/Manuscript.pdf).
 ## Files
 ### Main Function
-- [improveAF_main](/improvedAF_main.m): m file. The main function of the algorithm. The function starts with the reading of the environment map and returns the x/y coordinates and yaw angle of the planned waypoints.
+- [IAFSA](/IAFSA.m): m file. The main function of the algorithm. The function starts with the reading of the environment map and returns the x/y coordinates and yaw angle of the planned waypoints.
 - [GridAF_prey](/GridAF_prey.m): m file. The modified prey behavior of the artificial fish. The directional operator and probability weight factor are included here.
 - [GridAF_follow](/GridAF_follow.m): m file. The artificial fish will follow its neighbor which is with the best food consisitency. See the figure below.
 ![image](https://github.com/LiangZhao13/Improved-Artificial-Fish-Swarm-Algorithm/blob/main/images/behavior%E5%89%AF%E6%9C%AC.jpg)
