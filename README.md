@@ -22,6 +22,4 @@ The manuscript of the article is uploaded [here](https://github.com/LiangZhao13/
 ![image](https://github.com/LiangZhao13/Improved-Artificial-Fish-Swarm-Algorithm/blob/main/images/Satellite_map.png)
 ![image](https://github.com/LiangZhao13/Improved-Artificial-Fish-Swarm-Algorithm/blob/main/images/map_with_route.png)
 ## Contact
-Liang Zhao: [liamzhao13@zju.edu.cn](liamzhao13@zju.edu.cn). Master student in the College of Civil Engineering and Architecture, Zhejiang University.\
-Yong Bai: [baiyong@zju.edu.cn](baiyong@zju.edu.c). Professor in the College of Civil Engineering and Architecture, Zhejiang University.
-
+Liang Zhao: [liamzhao13@zju.edu.cn](liamzhao13@zju.edu.cn). 
