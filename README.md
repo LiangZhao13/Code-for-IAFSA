@@ -2,7 +2,7 @@
 ## Description
 This is the MATLAB code for Improved Artificial Fish Swarm Algorithm (IAFSA). The code is used for global path planning of autonomous surface vessels.\
 The mathematical background of IAFSA is detailed descriped in the author's article:  
-`Liang Zhao, Yong Bai*, Fang Wang. 2022. Route Planning for Autonomous Vessels based on Improved Artificial Fish Swarm Algorithm. Ships and Offshore Structures.`\
+`Liang Zhao, Yong Bai*, Fang Wang. 2022. Route Planning for Autonomous Vessels based on Improved Artificial Fish Swarm Algorithm. Ships and Offshore Structures.`
 ## Files
 ### Main Function
 - [IAFSA](/IAFSA.m): m file. The main function of the algorithm. The function starts with the reading of the environment map and returns the x/y coordinates and yaw angle of the planned waypoints.
